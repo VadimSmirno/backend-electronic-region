@@ -12,10 +12,18 @@ CREATE TABLE land_plot (
 	status boolean,
 	date_create timestamp with time zone, 
 	description text,
-	poligon geometry NOT NULL
-	CONSTRAINT land_plot_pkey PRIMARY KEY (gid)
+	poligon geometry NOT NULL,
+        type_land integer,
+	CONSTRAINT land_plot_pkey PRIMARY KEY (gid),
+        CONSTRAINT type_land_fk FOREIGN KEY (type_land)
 );
 ```
+### Таблица `Тип ЗУ` 
+CREATE TABLE type_land (
+	gid integer NOT NULL,
+	name character varying, 
+	CONSTRAINT type_land_pkey PRIMARY KEY (gid)
+);
 ### Таблица `Дороги`
 ```sql
 CREATE TABLE road
@@ -31,6 +39,8 @@ CREATE TABLE road
 
 # Практические задачи
 ## Задача №1
+
+## Задача №2
 
 Написать функцию для загрузки дынных из csv файлов (land_plot.csv, road.csv) в таблцы (land_plot, road). 
 Дополнительно произвести обработку пространственных данных:
@@ -61,8 +71,8 @@ CREATE TABLE road
 
 Напишите SQL запрос для поиска ближайшей дороги (road) для каждого ЗУ (land_plot). Результат выполнения запроса должен отображать всю информацию о ЗУ, а также наименование дороги (name) и расстояние до ближайшей точки дороги (если расстояние меньше километра отображать в метрах, елси больше то в километрах).
 
-Будет плюсом:
- - отображение на странице с подробной информацией о ЗУ из практического задания №2 информации о ближайшей дороге (наименование и расстояние). Расчет должен "выполняться на лету".
+Дополнительное задание:
+ - отображение на странице с подробной информацией о ЗУ из практического задания №2 информации о ближайшей дороге (наименование и расстояние). Расчет должен выполняться "на лету".
 
 
 # Рефакторинг
