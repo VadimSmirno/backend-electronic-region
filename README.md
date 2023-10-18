@@ -58,48 +58,14 @@ CREATE TABLE road
 - реализация загрузки данных в таблицу ЗУ посредством API, пагинация
 - использование чистых запросов для расчета расстояния
 
-## Задача №3
+# Рефакторинг
+Задачи на работу с чужим кодом.
+## Задача №1
+Посмотрите на код:
 
 ```python
-class html2canvasproxy:
-    ###
-    def __init__(self, callback, url):
-        if callback is not None and re.match('[^A-Za-z0-9_[.]\\[\\]]', callback) is not None:
-            self.set_response('error:Parameter "callback" contains invalid characters (' + callback + ')')
-        elif url == '' or url is None:
-            self.set_response('error:No such parameter "url"')
-        elif html2canvasproxy.is_http_url(url) == False:
-            self.set_response('error:Only http scheme and https scheme are allowed (' + url + ')')
-        else:
-            self.callback = callback
-
-            o = urlparse.urlparse(url)
-
-            if o.username is not None:
-                self.http_username = o.username
-
-            if o.password is not None:
-                self.http_password = o.password
-
-            if self.http_username != '' or self.http_password != '':
-                uri = (o.netloc.split('@'))[1]
-            else:
-                uri = o.netloc
-
-            self.url = o.scheme + '://' + uri + o.path
-
-            if o.query != '':
-                self.url += '?' + o.query
-
-    def enable_crossdomain(self):
-        self.cross_domain = True;
-
-    def initiate(self):
-        if self.status != 0:
-            return None
-
-        self.download_source()
-
+class html_copy_to:
+    ###  
     def download_source(self):
         headers = { 'User-Agent' : self.ua }
 
@@ -157,32 +123,9 @@ class html2canvasproxy:
             r.close()
         except urllib2.URLError, e:
             self.set_response('error:SOCKET: ' + str(e.reason))
-
-    def remove_old_files(self):
-        a = []
-        for f in os.listdir(self.save_path):
-            if f.find(self.prefix) == 0 and os.path.isfile(self.save_path + f) and ((self.init_exec - os.path.getctime(self.save_path + f))) > (self.ccache * 2):
-                os.unlink(self.save_path + f)
-
-    def save_file(self):
-        file_name = hashlib.sha1(self.url).hexdigest()
-        tmp_ext = str(random.randrange(1000)) + '_' + str(self.init_exec)
-
-        if os.path.isfile(self.save_path + file_name + '.' + tmp_ext):
-            self.save_file() #try again
-        else:
-            f = open(self.save_path + file_name + '.' + tmp_ext, 'wb')
-            f.write(self.data)
-            f.close()
-
-            if os.path.isfile(self.save_path + file_name + '.' + self.real_extension):
-                os.remove(self.save_path + file_name + '.' + self.real_extension)
-
-            os.rename(self.save_path + file_name + '.' + tmp_ext, self.save_path + file_name + '.' + self.real_extension)
-
-            self.set_response(self.scheme + '://' + self.host + self.route_path + file_name + '.' + self.real_extension)
 ```
 
+Что можно улучшить? Как бы вы его переписали?
 
 
 ## Комментарии
