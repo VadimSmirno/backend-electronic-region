@@ -18,7 +18,7 @@ CREATE TABLE land_plot (
 ```
 ### Таблица `Дороги`
 ```sql
-CREATE TABLE IF NOT EXISTS road
+CREATE TABLE road
 (
     gid integer,
     name character varying,
