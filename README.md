@@ -19,11 +19,13 @@ CREATE TABLE land_plot (
 );
 ```
 ### Таблица `Тип ЗУ` 
+```sql
 CREATE TABLE type_land (
 	gid integer NOT NULL,
 	name character varying, 
 	CONSTRAINT type_land_pkey PRIMARY KEY (gid)
 );
+```
 ### Таблица `Дороги`
 ```sql
 CREATE TABLE road
