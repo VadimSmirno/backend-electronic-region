@@ -29,6 +29,7 @@ CREATE TABLE road
 )
 ```
 
+# Практические задачи
 ## Задача №1
 
 Написать функцию для загрузки дынных из csv файлов (land_plot.csv, road.csv) в таблцы (land_plot, road). 
