@@ -17,7 +17,7 @@ CREATE TABLE land_plot (
 );
 ```
 ### Таблица `Дороги`
-```
+```sql
 CREATE TABLE IF NOT EXISTS road
 (
     gid integer,
