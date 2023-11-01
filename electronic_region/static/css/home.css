@@ -1,0 +1,40 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+h2 {
+    color: #333;
+}
+
+.button-container {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.button-container a {
+    display: inline-block;
+    margin: 70px;
+}
+
+input[type="submit"] {
+    background-color: #007bff; /* Новый цвет фона кнопок */
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.bright-button {
+    background-color: #ff5733; /* Новый цвет фона для яркой кнопки */
+    color: #fff;
+    padding: 15px 30px; /* Увеличьте размер кнопки */
+    border: none;
+    cursor: pointer;
+}

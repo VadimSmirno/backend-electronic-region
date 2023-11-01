@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <title>Форма для поиска маршрута</title>
+    <link rel="stylesheet" type="text/css" href="{% static '/css/styles.css' %}">
+</head>
+<body>
+   <div class="centered-form">
+        <h1>Введите данные для поиска маршрута к ЗУ</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Найти маршрут">
+        </form>
+       <a href="{% url 'land_plot_list' %}">Перейти к списку земельных участков</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <title>Список земельных участков</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <h1>Список земельных участков</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Номер</th>
+                <th>Имя</th>
+                <th>Площадь</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for land_plot in land_plots %}
+            <tr>
+                <td><a href="{% url 'land_plot_detail' land_plot.0 %}">{{ land_plot.0 }}</a></td>  {# Номер участка #}
+                <td>{{ land_plot.1 }}</td>  {# Имя участка #}
+                <td>{{ land_plot.2 }}</td>  {# Площадь участка #}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if land_plots.has_previous %}
+                <a href="?page=1">&laquo; первая</a>
+                <a href="?page={{ land_plots.previous_page_number }}">предыдущая</a>
+            {% endif %}
+
+            <span class="current-page">
+                Страница {{ land_plots.number }} из {{ land_plots.paginator.num_pages }}.
+            </span>
+
+            {% if land_plots.has_next %}
+                <a href="?page={{ land_plots.next_page_number }}">следующая</a>
+                <a href="?page={{ land_plots.paginator.num_pages }}">последняя &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+</body>
+</html>
+

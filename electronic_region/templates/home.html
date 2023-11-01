@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Главная страница</title>
+     <link rel="stylesheet" type="text/css" href="{% static '/css/home.css' %}">
+</head>
+<body>
+    <h2>Добро пожаловать на главную страницу</h2>
+    <div class="button-container">
+        {% if request.user.is_authenticated %}
+            <a href="{% url 'land_plot_list' %}">Перейти к списку земельных участков</a>
+            <a href="{% url 'logaut' %}"><button>Выход</button></a>
+        {% else %}
+            <a href="{% url 'register' %}"><button>Регистрация</button></a>
+            <a href="{% url 'login' %}"><button>Вход</button></a>
+        {% endif %}
+    </div>
+</body>
+</html>
+
+

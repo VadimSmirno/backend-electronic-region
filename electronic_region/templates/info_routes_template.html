@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Маршрутная информация</title>
+</head>
+<body>
+    <h1>Информация о маршруте</h1>
+    <p>Расстояние: {{ distance }} км</p>
+    <p>Время в пути: {{ duration|floatformat:1 }} часов</p>
+
+    <h2>Точки маршрута:</h2>
+    <ul>
+        {% for waypoint in waypoints %}
+            <li>{{ forloop.counter }}. {{ waypoint.name }} ({{ waypoint.location.1|floatformat:6 }}, {{ waypoint.location.0|floatformat:6 }})</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
